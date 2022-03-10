@@ -1,0 +1,8 @@
+TempSettings:
+  URI: https://google.com
+  Port: 80
+  Test:
+    Fizz: 1
+    Buzz: 2
+AnotherSettings:Flag: true
+V: 1
