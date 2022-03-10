@@ -1,0 +1,19 @@
+name: Test
+
+inputs:
+  go-version:
+    description: 'Target golang version'
+    required: true
+
+description: Run tests
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ inputs.go-version }}
+    - name: Test
+      run: make test
+      shell: bash
