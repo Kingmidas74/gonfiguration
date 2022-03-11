@@ -6,7 +6,8 @@ import (
 )
 
 func TestConfiguration_GetSectionWhenYamlFileOnly(t *testing.T) {
-	builder, err := (&ConfigurationBuilder{}).AddYamlFile("appsettings.yaml")
+	builder := InitConfigurationBuilder()
+	builder, err := builder.AddYamlFile("appsettings.yaml")
 	if err != nil {
 		t.Error(err)
 	}
@@ -36,7 +37,9 @@ func TestConfiguration_GetSectionWhenEnvOnly(t *testing.T) {
 	os.Setenv("AnotherSettings:Flag", "true")
 	defer os.Unsetenv("AnotherSettings:Flag")
 
-	builder, err := (&ConfigurationBuilder{}).AddEnvironmentVariables()
+	builder := InitConfigurationBuilder()
+
+	builder, err := builder.AddEnvironmentVariables()
 	if err != nil {
 		t.Error(err)
 	}
@@ -66,7 +69,9 @@ func TestConfiguration_GetSectionWhenEnvOverrideYaml(t *testing.T) {
 	os.Setenv("AnotherSettings:Flag", "false")
 	defer os.Unsetenv("AnotherSettings:Flag")
 
-	builder, err := (&ConfigurationBuilder{}).AddYamlFile("appsettings.yaml")
+	builder := InitConfigurationBuilder()
+
+	builder, err := builder.AddYamlFile("appsettings.yaml")
 	if err != nil {
 		t.Error(err)
 	}
@@ -102,7 +107,9 @@ func TestConfiguration_GetSectionWhenYamlOverrideEnv(t *testing.T) {
 	os.Setenv("AnotherSettings:Flag", "false")
 	defer os.Unsetenv("AnotherSettings:Flag")
 
-	builder, err := (&ConfigurationBuilder{}).AddEnvironmentVariables()
+	builder := InitConfigurationBuilder()
+
+	builder, err := builder.AddEnvironmentVariables()
 	if err != nil {
 		t.Error(err)
 	}

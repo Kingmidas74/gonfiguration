@@ -105,3 +105,9 @@ func (this *ConfigurationBuilder) Build() (Configuration, error) {
 	}
 	return Configuration{data: nested}, nil
 }
+
+func InitConfigurationBuilder() *ConfigurationBuilder {
+	result := ConfigurationBuilder{}
+	result.init()
+	return &result
+}
